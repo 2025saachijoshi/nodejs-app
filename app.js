@@ -1,10 +1,22 @@
-const http = require('http');
+const readline = require('readline');
 
-const server = http.createServer((req, res) => {
-    res.write("Hello, this is Node.js application deployed using Jenkins Pipeline!");
-    res.end();
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
 });
 
-server.listen(3000, () => {
-    console.log("Server running on port 3000");
+rl.question("Enter a number: ", function(num) {
+    num = parseInt(num);
+    let fact = 1;
+
+    if (num < 0) {
+        console.log("Factorial is not defined for negative numbers.");
+    } else {
+        for (let i = 1; i <= num; i++) {
+            fact *= i;
+        }
+        console.log("Factorial is: " + fact);
+    }
+
+    rl.close();
 });
